@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đề kiểm tra Toán lớp 4 – Học kì 1 (Đề số 1)</title>
+<style>
+:root{--bg:#f4f8ff;--card:#fff;--ink:#16243a;--mut:#5b6b82;--pri:#2f6fd6;--pri2:#e6efff;--ok:#1b8a4b;--okbg:#e3f6ea;--bad:#c23b3b;--badbg:#fdeaea;--line:#d9e3f2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1726;--card:#18233a;--ink:#e8eefb;--mut:#9fb0cc;--pri:#6aa0ff;--pri2:#223457;--ok:#5fd493;--okbg:#14352a;--bad:#ff8a8a;--badbg:#3b1d22;--line:#2b3b5c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1726;--card:#18233a;--ink:#e8eefb;--mut:#9fb0cc;--pri:#6aa0ff;--pri2:#223457;--ok:#5fd493;--okbg:#14352a;--bad:#ff8a8a;--badbg:#3b1d22;--line:#2b3b5c;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px 80px}
+.hero{text-align:center;padding:56px 12px 32px}
+.badge{display:inline-block;background:var(--pri2);color:var(--pri);font-weight:600;padding:4px 14px;border-radius:99px;font-size:14px}
+h1{font-size:clamp(26px,5vw,40px);line-height:1.2;margin:16px 0 10px}
+.hero p{color:var(--mut);max-width:520px;margin:0 auto 22px}
+.stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 20px;min-width:110px}
+.stat b{display:block;font-size:24px;color:var(--pri)}.stat span{font-size:13px;color:var(--mut)}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:12px;padding:13px 30px;font-weight:600;font-size:17px}
+.btn.alt{background:var(--pri2);color:var(--pri)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+#bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:10px 0;display:none}
+#bar .in{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px;display:flex;gap:14px;align-items:center}
+#bar .track{flex:1;height:8px;background:var(--pri2);border-radius:9px;overflow:hidden}
+#bar .fill{height:100%;width:0;background:var(--pri);transition:width .2s}
+#timer{font-variant-numeric:tabular-nums;font-weight:700}
+h2{margin:30px 0 8px;font-size:20px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0}
+.q.ok{border-color:var(--ok)}.q.bad{border-color:var(--bad)}
+.q h3{margin:0 0 10px;font-size:16px}.q h3 small{color:var(--mut);font-weight:500}
+.opt{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:var(--bg);border:1.5px solid var(--line);color:var(--ink);border-radius:10px;padding:9px 12px;margin:6px 0}
+.opt b{background:var(--pri2);color:var(--pri);border-radius:8px;width:28px;height:28px;display:inline-grid;place-items:center;flex:none}
+.opt.sel{border-color:var(--pri);background:var(--pri2)}
+.opt.right{border-color:var(--ok);background:var(--okbg)}.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+input[type=text]{font:inherit;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;width:100%;max-width:240px}
+input:focus{outline:2px solid var(--pri);border-color:var(--pri)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row label{color:var(--mut);font-size:14px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.chip{background:var(--pri2);color:var(--pri);border:1.5px solid var(--pri);border-radius:99px;padding:5px 14px;font-weight:600}
+.chip.used{opacity:.3;pointer-events:none}
+.seq{min-height:40px;border:1.5px dashed var(--line);border-radius:10px;padding:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.seq .chip{background:var(--pri);color:#fff}
+.hint{color:var(--mut);font-size:13px}
+.fb{margin-top:10px;padding:10px 12px;border-radius:10px;font-size:15px;display:none}
+.q.ok .fb{display:block;background:var(--okbg)}.q.bad .fb{display:block;background:var(--badbg)}
+.submit{text-align:center;margin:30px 0}
+#result{display:none;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 18px;margin:20px 0}
+.ring{--p:0;width:170px;height:170px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;background:conic-gradient(var(--pri) calc(var(--p)*1%),var(--pri2) 0)}
+.ring div{width:134px;height:134px;border-radius:50%;background:var(--card);display:grid;place-items:center}
+.ring b{font-size:42px;line-height:1}.ring span{font-size:13px;color:var(--mut);display:block}
+.sec{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:16px 0}
+.sec .stat{min-width:140px}
+footer{text-align:center;color:var(--mut);font-size:13px;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero" id="hero">
+  <span class="badge">Toán – Lớp 4 · Học kì 1 · Đề số 1</span>
+  <h1>Làm bài kiểm tra trực tuyến<br>và nhận điểm ngay</h1>
+  <p>Gồm 6 câu trắc nghiệm và 5 bài tự luận (15 ý nhỏ). Nhập kết quả, bấm “Nộp bài” để xem điểm, đáp án và lời giải chi tiết.</p>
+  <div class="stats">
+    <div class="stat"><b>40</b><span>phút</span></div>
+    <div class="stat"><b>21</b><span>câu / ý</span></div>
+    <div class="stat"><b>10</b><span>điểm</span></div>
+  </div>
+  <button class="btn" id="start">Bắt đầu làm bài</button>
+</section>
+
+<div id="bar"><div class="in"><span>⏱ <span id="timer">40:00</span></span><div class="track"><div class="fill" id="fill"></div></div><span id="prog">0/21</span></div></div>
+<main id="quiz" style="display:none"></main>
+<div class="submit" id="submitBox" style="display:none"><button class="btn" id="submit">Nộp bài</button><p class="hint" id="warn"></p></div>
+
+<section id="result">
+  <div class="ring" id="ring"><div><p style="margin:0"><b id="score">0</b><span>/ 10 điểm</span></p></div></div>
+  <h2 id="grade" style="margin:6px 0"></h2>
+  <p id="sum" class="hint"></p>
+  <div class="sec" id="secs"></div>
+  <button class="btn" id="review">Xem lời giải bên dưới ↓</button>
+  <button class="btn alt" onclick="location.reload()">Làm lại</button>
+</section>
+<footer>Nội dung đề lấy từ tệp gốc “Đề kiểm tra học kì 1 – Toán lớp 4 – Đề số 1”. Điểm = số câu/ý đúng ÷ 21 × 10.</footer>
+</div>
+
+<script>
+const Q=[
+{s:1,t:"mc",q:"Số 93 085 đọc là:",o:["Chín nghìn ba mươi trăm tám mươi lăm","Chín trăm ba mươi trăm tám mươi lăm","Chín mươi ba nghìn không trăm tám mươi lăm","Chín ba nghìn không tám lăm"],a:2,e:"93 085 đọc là “Chín mươi ba nghìn không trăm tám mươi lăm”."},
+{s:1,t:"mc",q:"Số lớn nhất trong các số: 85 091, 85 190, 58 901, 58 910 là:",o:["85 091","85 190","58 901","58 910"],a:1,e:"58 901 < 58 910 < 85 091 < 85 190 nên số lớn nhất là 85 190."},
+{s:1,t:"mc",q:"Điền dấu (>, <, =) vào chỗ chấm: 60 240 …… 60 000 + 200 + 4",o:["<",">","="],a:1,e:"60 000 + 200 + 4 = 60 204 và 60 240 > 60 204."},
+{s:1,t:"mc",q:"Nếu a = 8260 thì giá trị biểu thức 35420 – a : 4 là:",o:["2 065","8 855","6 790","33 355"],a:3,e:"35420 – 8260 : 4 = 35420 – 2065 = 33355 (chia trước, trừ sau)."},
+{s:1,t:"mc",q:"Một tổ công nhân trong 5 ngày làm được 425 dụng cụ. Hỏi với mức làm như thế thì trong 9 ngày tổ công nhân đó làm được bao nhiêu dụng cụ?",o:["765 dụng cụ","675 dụng cụ","756 dụng cụ","567 dụng cụ"],a:0,e:"1 ngày: 425 : 5 = 85 dụng cụ. 9 ngày: 85 × 9 = 765 dụng cụ."},
+{s:1,t:"mc",q:"Hai số có tổng là 1035, số lớn hơn số bé 117 đơn vị. Vậy số lớn là:",o:["459","567","576","765"],a:2,e:"Số lớn = (Tổng + Hiệu) : 2 = (1035 + 117) : 2 = 576."},
+{s:2,t:"num",b:"Bài 1a",q:"Đặt tính rồi tính: 72638 + 80133",a:"152771",e:"72638 + 80133 = 152771."},
+{s:2,t:"num",b:"Bài 1b",q:"Đặt tính rồi tính: 780135 – 498023",a:"282112",e:"780135 – 498023 = 282112."},
+{s:2,t:"num",b:"Bài 1c",q:"Đặt tính rồi tính: 2316 × 42",a:"97272",e:"2316 × 2 = 4632; 2316 × 40 = 92640; cộng lại được 97272."},
+{s:2,t:"div",b:"Bài 1d",q:"Đặt tính rồi tính: 13036 : 28",a:["465","16"],e:"13036 : 28 = 465 (dư 16)."},
+{s:2,t:"ord",b:"Bài 2a",q:"Sắp xếp các số sau theo thứ tự từ bé đến lớn:",items:["37109","29815","48725","19624","20001"],a:["19624","20001","29815","37109","48725"],e:"19 624 < 20 001 < 29 815 < 37 109 < 48 725."},
+{s:2,t:"ord",b:"Bài 2b",q:"Sắp xếp các số sau theo thứ tự từ lớn đến bé:",items:["65008","27912","84109","12754","39789"],a:["84109","65008","39789","27912","12754"],e:"84 109 > 65 008 > 39 789 > 27 912 > 12 754."},
+{s:2,t:"num",b:"Bài 3a",q:"Tính giá trị biểu thức: 7536 – 124 × 5",a:"6916",e:"7536 – 620 = 6916 (nhân trước, trừ sau)."},
+{s:2,t:"num",b:"Bài 3b",q:"Tính giá trị biểu thức: (7536 + 124) : 5",a:"1532",e:"(7536 + 124) : 5 = 7660 : 5 = 1532 (tính trong ngoặc trước)."},
+{s:2,t:"num",b:"Bài 4a",q:"Tìm x, biết: 3408 + x = 8034",a:"4626",e:"x = 8034 – 3408 = 4626."},
+{s:2,t:"num",b:"Bài 4b",q:"Tìm x, biết: x – 1276 = 4324",a:"5600",e:"x = 4324 + 1276 = 5600."},
+{s:2,t:"num",b:"Bài 4c",q:"Tìm x, biết: x × 8 = 2016",a:"252",e:"x = 2016 : 8 = 252."},
+{s:2,t:"num",b:"Bài 4d",q:"Tìm x, biết: x : 6 = 2025",a:"12150",e:"x = 2025 × 6 = 12150."},
+{s:2,t:"num",b:"Bài 5a",q:"Hình chữ nhật có chiều dài 124 cm, chiều rộng bằng 1/4 chiều dài. Chiều rộng là bao nhiêu cm?",u:"cm",a:"31",e:"124 : 4 = 31 (cm)."},
+{s:2,t:"num",b:"Bài 5b",q:"Chu vi hình chữ nhật đó là bao nhiêu cm?",u:"cm",a:"310",e:"(124 + 31) × 2 = 310 (cm)."},
+{s:2,t:"num",b:"Bài 5c",q:"Diện tích hình chữ nhật đó là bao nhiêu cm²?",u:"cm²",a:"3844",e:"124 × 31 = 3844 (cm²)."}
+];
+const L="ABCD";let state=Q.map(q=>q.t==="ord"?[]:q.t==="div"?["",""]:null),done=false,tLeft=2400,tm;
+const $=s=>document.querySelector(s);
+const norm=v=>String(v||"").replace(/[\s.,]/g,"");
+function render(){
+  let h="",sec=0;
+  Q.forEach((q,i)=>{
+    if(q.s!==sec){sec=q.s;h+=`<h2>${sec===1?"I. Phần trắc nghiệm":"II. Phần tự luận"}</h2>`;h+=`<p class="hint">${sec===1?"Chọn chữ đặt trước câu trả lời đúng.":"Tự tính ra giấy nháp rồi nhập kết quả. Số có thể viết liền hoặc có dấu cách."}</p>`}
+    h+=`<div class="q" id="q${i}"><h3>${q.t==="mc"?"Câu "+(i+1):q.b}. <small>${q.q}</small></h3>`;
+    if(q.t==="mc")q.o.forEach((o,k)=>h+=`<button class="opt" data-i="${i}" data-k="${k}"><b>${L[k]}</b>${o}</button>`);
+    if(q.t==="num")h+=`<div class="row"><input type="text" inputmode="numeric" data-i="${i}" placeholder="Kết quả"> ${q.u?`<label>${q.u}</label>`:""}</div>`;
+    if(q.t==="div")h+=`<div class="row"><label>Thương</label><input type="text" inputmode="numeric" data-i="${i}" data-p="0" style="max-width:120px"><label>Số dư</label><input type="text" inputmode="numeric" data-i="${i}" data-p="1" style="max-width:120px"></div><p class="hint">Nếu chia hết, nhập số dư là 0.</p>`;
+    if(q.t==="ord")h+=`<div class="chips" id="ch${i}">${q.items.map(x=>`<button class="chip" data-i="${i}" data-v="${x}">${Number(x).toLocaleString("vi-VN")}</button>`).join("")}</div><div class="seq" id="sq${i}"><span class="hint">Bấm các số theo đúng thứ tự…</span></div><button class="chip" style="margin-top:6px;background:none" data-reset="${i}">↺ Chọn lại</button>`;
+    h+=`<div class="fb" id="fb${i}"></div></div>`;
+  });
+  $("#quiz").innerHTML=h;
+}
+function answered(i){const q=Q[i],s=state[i];return q.t==="mc"?s!==null:q.t==="num"?norm(s)!=="":q.t==="div"?norm(s[0])!==""&&norm(s[1])!=="":s.length===q.items.length}
+function upd(){const n=Q.filter((_,i)=>answered(i)).length;$("#prog").textContent=n+"/"+Q.length;$("#fill").style.width=n/Q.length*100+"%"}
+function drawOrd(i){
+  const q=Q[i],s=state[i];
+  document.querySelectorAll(`#ch${i} .chip`).forEach(c=>c.classList.toggle("used",s.includes(c.dataset.v)));
+  $("#sq"+i).innerHTML=s.length?s.map(v=>`<span class="chip">${Number(v).toLocaleString("vi-VN")}</span>`).join("<span class=hint>›</span>"):'<span class="hint">Bấm các số theo đúng thứ tự…</span>';
+}
+document.addEventListener("click",e=>{
+  if(done)return;
+  const o=e.target.closest(".opt");
+  if(o){const i=+o.dataset.i;state[i]=+o.dataset.k;document.querySelectorAll(`[data-i="${i}"].opt`).forEach(b=>b.classList.toggle("sel",b===o));upd();return}
+  const c=e.target.closest("#quiz .chip[data-v]");
+  if(c){const i=+c.dataset.i;if(!state[i].includes(c.dataset.v)){state[i].push(c.dataset.v);drawOrd(i);upd()}return}
+  const r=e.target.closest("[data-reset]");
+  if(r){const i=+r.dataset.reset;state[i]=[];drawOrd(i);upd()}
+});
+document.addEventListener("input",e=>{
+  const t=e.target;if(t.dataset.i===undefined||t.type!=="text")return;
+  const i=+t.dataset.i;if(t.dataset.p!==undefined)state[i][+t.dataset.p]=t.value;else state[i]=t.value;upd();
+});
+function isOk(i){const q=Q[i],s=state[i];
+  if(q.t==="mc")return s===q.a;
+  if(q.t==="num")return norm(s)===q.a;
+  if(q.t==="div")return norm(s[0])===q.a[0]&&norm(s[1])===q.a[1];
+  return JSON.stringify(s)===JSON.stringify(q.a)}
+function finish(auto){
+  if(done)return;
+  const n=Q.filter((_,i)=>answered(i)).length;
+  if(!auto&&n<Q.length&&!confirm(`Bạn mới làm ${n}/${Q.length} câu. Vẫn nộp bài?`))return;
+  done=true;clearInterval(tm);
+  let ok=0,s1=0,s2=0;
+  Q.forEach((q,i)=>{
+    const r=isOk(i);if(r){ok++;q.s===1?s1++:s2++}
+    const el=$("#q"+i);el.classList.add(r?"ok":"bad");
+    const ans=q.t==="mc"?`${L[q.a]}. ${q.o[q.a]}`:q.t==="div"?`${q.a[0]} (dư ${q.a[1]})`:q.t==="ord"?q.a.map(x=>Number(x).toLocaleString("vi-VN")).join(" ; "):q.a+(q.u?" "+q.u:"");
+    $("#fb"+i).innerHTML=`<b>${r?"✔ Chính xác!":"✘ Chưa đúng."}</b> Đáp án: <b>${ans}</b><br>${q.e}`;
+    if(q.t==="mc"){document.querySelectorAll(`[data-i="${i}"].opt`).forEach(b=>{const k=+b.dataset.k;if(k===q.a)b.classList.add("right");else if(k===state[i])b.classList.add("wrong")})}
+  });
+  document.querySelectorAll("input").forEach(x=>x.disabled=true);
+  const sc=Math.round(ok/Q.length*100)/10;
+  $("#score").textContent=String(sc).replace(".",",");
+  $("#ring").style.setProperty("--p",sc*10);
+  $("#grade").textContent=sc>=9?"Xuất sắc! 🏆":sc>=8?"Giỏi! 🎉":sc>=6.5?"Khá tốt 👍":sc>=5?"Đạt – cố gắng thêm nhé":"Cần ôn tập thêm 💪";
+  $("#sum").textContent=`Bạn làm đúng ${ok}/${Q.length} câu/ý${auto?" (hết giờ, bài được nộp tự động)":""}.`;
+  $("#secs").innerHTML=`<div class="stat"><b>${s1}/6</b><span>Trắc nghiệm</span></div><div class="stat"><b>${s2}/15</b><span>Tự luận</span></div><div class="stat"><b>${fmt(2400-tLeft)}</b><span>Thời gian làm</span></div>`;
+  $("#submitBox").style.display="none";$("#result").style.display="block";
+  $("#result").scrollIntoView({behavior:"smooth"});
+}
+const fmt=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+$("#start").onclick=()=>{
+  $("#hero").style.display="none";$("#bar").style.display="block";$("#quiz").style.display="block";$("#submitBox").style.display="block";
+  render();Q.forEach((q,i)=>{if(q.t==="ord")drawOrd(i)});upd();
+  tm=setInterval(()=>{tLeft--;$("#timer").textContent=fmt(tLeft);if(tLeft<=0)finish(true)},1000);
+  window.scrollTo(0,0);
+};
+$("#submit").onclick=()=>finish(false);
+$("#review").onclick=()=>$("#q0").scrollIntoView({behavior:"smooth"});
+</script>
+</body>
+</html>
