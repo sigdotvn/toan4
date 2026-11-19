@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đề kiểm tra Toán lớp 4 – Học kì 1 (Đề 2 – Kết nối tri thức)</title>
+<style>
+:root{--bg:#f4f8ff;--card:#fff;--ink:#16243a;--mut:#5b6b82;--pri:#2f6fd6;--pri2:#e6efff;--ok:#1b8a4b;--okbg:#e3f6ea;--bad:#c23b3b;--badbg:#fdeaea;--line:#d9e3f2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1726;--card:#18233a;--ink:#e8eefb;--mut:#9fb0cc;--pri:#6aa0ff;--pri2:#223457;--ok:#5fd493;--okbg:#14352a;--bad:#ff8a8a;--badbg:#3b1d22;--line:#2b3b5c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1726;--card:#18233a;--ink:#e8eefb;--mut:#9fb0cc;--pri:#6aa0ff;--pri2:#223457;--ok:#5fd493;--okbg:#14352a;--bad:#ff8a8a;--badbg:#3b1d22;--line:#2b3b5c;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px 80px}
+.hero{text-align:center;padding:56px 12px 32px}
+.badge{display:inline-block;background:var(--pri2);color:var(--pri);font-weight:600;padding:4px 14px;border-radius:99px;font-size:14px}
+h1{font-size:clamp(26px,5vw,40px);line-height:1.2;margin:16px 0 10px}
+.hero p{color:var(--mut);max-width:540px;margin:0 auto 22px}
+.stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 20px;min-width:110px}
+.stat b{display:block;font-size:24px;color:var(--pri)}.stat span{font-size:13px;color:var(--mut)}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:12px;padding:13px 30px;font-weight:600;font-size:17px}
+.btn.alt{background:var(--pri2);color:var(--pri)}
+#bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:10px 0;display:none}
+#bar .in{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px;display:flex;gap:14px;align-items:center}
+#bar .track{flex:1;height:8px;background:var(--pri2);border-radius:9px;overflow:hidden}
+#bar .fill{height:100%;width:0;background:var(--pri);transition:width .2s}
+#timer{font-variant-numeric:tabular-nums;font-weight:700}
+h2{margin:30px 0 8px;font-size:20px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:12px 0}
+.q.ok{border-color:var(--ok)}.q.bad{border-color:var(--bad)}
+.q h3{margin:0 0 10px;font-size:16px}.q h3 small{color:var(--mut);font-weight:500}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.opt{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:var(--bg);border:1.5px solid var(--line);color:var(--ink);border-radius:10px;padding:9px 12px}
+.opt b{background:var(--pri2);color:var(--pri);border-radius:8px;width:28px;height:28px;display:inline-grid;place-items:center;flex:none}
+.opt svg{width:100px;height:auto;fill:#bfe0f5;stroke:var(--pri);stroke-width:2}
+.opt.sel{border-color:var(--pri);background:var(--pri2)}
+.opt.right{border-color:var(--ok);background:var(--okbg)}.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+input[type=text]{font:inherit;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;width:100%;max-width:200px}
+input:focus{outline:2px solid var(--pri);border-color:var(--pri)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row label{color:var(--mut);font-size:14px}
+.hint{color:var(--mut);font-size:13px}
+.fb{margin-top:10px;padding:10px 12px;border-radius:10px;font-size:15px;display:none}
+.q.ok .fb{display:block;background:var(--okbg)}.q.bad .fb{display:block;background:var(--badbg)}
+.draw{display:flex;gap:14px;flex-wrap:wrap}.draw svg{flex:1;min-width:220px;max-width:100%;background:var(--bg);border-radius:10px;border:1px solid var(--line)}
+svg .ln{stroke:var(--ink);stroke-width:2}svg .sol{stroke:var(--pri);stroke-width:2.5}svg text{fill:var(--ink);font-size:13px;font-style:italic}
+.submit{text-align:center;margin:30px 0}
+#result{display:none;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 18px;margin:20px 0}
+.ring{--p:0;width:170px;height:170px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;background:conic-gradient(var(--pri) calc(var(--p)*1%),var(--pri2) 0)}
+.ring div{width:134px;height:134px;border-radius:50%;background:var(--card);display:grid;place-items:center}
+.ring b{font-size:42px;line-height:1}.ring span{font-size:13px;color:var(--mut);display:block}
+.sec{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:16px 0}
+footer{text-align:center;color:var(--mut);font-size:13px;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero" id="hero">
+  <span class="badge">Toán – Lớp 4 · Học kì 1 · Đề 2 · Kết nối tri thức</span>
+  <h1>Làm bài kiểm tra trực tuyến<br>và nhận điểm ngay</h1>
+  <p>Gồm 6 câu trắc nghiệm, 4 câu tự luận (11 ý) chấm tự động, và 1 câu vẽ hình để luyện tập có hướng dẫn. Nộp bài để xem điểm, đáp án và lời giải.</p>
+  <div class="stats">
+    <div class="stat"><b>40</b><span>phút</span></div>
+    <div class="stat"><b>17</b><span>câu / ý chấm điểm</span></div>
+    <div class="stat"><b>10</b><span>điểm</span></div>
+  </div>
+  <button class="btn" id="start">Bắt đầu làm bài</button>
+</section>
+
+<div id="bar"><div class="in"><span>⏱ <span id="timer">40:00</span></span><div class="track"><div class="fill" id="fill"></div></div><span id="prog">0/17</span></div></div>
+<main id="quiz" style="display:none"></main>
+<div class="submit" id="submitBox" style="display:none"><button class="btn" id="submit">Nộp bài</button></div>
+
+<section id="result">
+  <div class="ring" id="ring"><div><p style="margin:0"><b id="score">0</b><span>/ 10 điểm</span></p></div></div>
+  <h2 id="grade" style="margin:6px 0"></h2>
+  <p id="sum" class="hint"></p>
+  <div class="sec" id="secs"></div>
+  <button class="btn" id="review">Xem lời giải bên dưới ↓</button>
+  <button class="btn alt" onclick="location.reload()">Làm lại</button>
+</section>
+<footer>Nội dung lấy từ tệp gốc “Đề kiểm tra học kì 1 – Toán lớp 4 – Đề 2 (Kết nối tri thức)”. Điểm = số câu/ý đúng ÷ 17 × 10. Câu 5 (vẽ hình) không tính điểm.</footer>
+</div>
+
+<script>
+const P=["25,8 95,8 115,62 5,62","40,8 115,8 85,62 10,62","10,20 90,8 90,62 10,62","10,12 115,12 80,62 25,62"];
+const svgs=P.map(p=>`<svg viewBox="0 0 125 70"><polygon points="${p}"/></svg>`);
+const Q=[
+{s:1,t:"mc",q:"Số lớn nhất trong các số 23 076 934; 320 656 987; 87 654 299; 320 437 101 là:",o:["23 076 934","320 656 987","87 654 299","320 437 101"],a:1,e:"Hai số 9 chữ số là 320 656 987 và 320 437 101; so sánh hàng trăm nghìn: 6 > 4 nên số lớn nhất là 320 656 987."},
+{s:1,t:"mc",q:"Số “Sáu trăm bốn mươi mốt triệu tám trăm hai mươi nghìn” viết là:",o:["640 820 000","641 802 000","641 822 000","641 820 000"],a:3,e:"Viết lần lượt lớp triệu (641), lớp nghìn (820), lớp đơn vị (000): 641 820 000."},
+{s:1,t:"mc",q:"Số thứ sáu trong dãy số 212, 232, 252, 272, … là:",o:["292","302","312","322"],a:2,e:"Dãy cách đều 20 đơn vị. Số thứ năm: 272 + 20 = 292; số thứ sáu: 292 + 20 = 312."},
+{s:1,t:"mc",q:"Hình có 2 góc nhọn, 2 góc tù và 2 cặp cạnh song song là:",o:svgs,svg:1,a:1,e:"Hình B (hình bình hành) có 2 góc nhọn, 2 góc tù và 2 cặp cạnh song song."},
+{s:1,t:"mc",q:"Lễ kỉ niệm 600 năm ngày sinh của Đại thi hào Nguyễn Trãi được tổ chức vào năm 1980. Vậy Đại thi hào Nguyễn Trãi được sinh ra ở thế kỉ:",o:["XIII","XIV","XIX","XX"],a:1,e:"Năm sinh: 1980 – 600 = 1380, thuộc thế kỉ XIV."},
+{s:1,t:"mc",q:"Mẹ sinh Nam năm 27 tuổi. Hiện tại, tổng số tuổi của mẹ và Nam là 45 tuổi. Số tuổi của Nam hiện nay là:",o:["6 tuổi","7 tuổi","8 tuổi","9 tuổi"],a:3,e:"Mẹ hơn Nam 27 tuổi. Tuổi Nam = (45 – 27) : 2 = 9 (tuổi)."},
+{s:2,t:"num",b:"Câu 1a",q:"Đặt tính rồi tính: 538 042 + 142 378",a:"680420",e:"538 042 + 142 378 = 680 420."},
+{s:2,t:"num",b:"Câu 1b",q:"Đặt tính rồi tính: 729 062 – 68 504",a:"660558",e:"729 062 – 68 504 = 660 558."},
+{s:2,t:"num",b:"Câu 1c",q:"Đặt tính rồi tính: 5 143 × 3",a:"15429",e:"5 143 × 3 = 15 429."},
+{s:2,t:"num",b:"Câu 1d",q:"Đặt tính rồi tính: 47 012 : 7",a:"6716",e:"47 012 : 7 = 6 716 (chia hết, dư 0)."},
+{s:2,t:"num",b:"Câu 2a",q:"12 tấn 7 yến = … kg",u:"kg",a:"12070",e:"12 tấn = 12 000 kg; 7 yến = 70 kg → 12 070 kg."},
+{s:2,t:"num",b:"Câu 2b",q:"3 dm² 80 mm² = … mm²",u:"mm²",a:"30080",e:"1 dm² = 10 000 mm² nên 3 dm² = 30 000 mm²; cộng 80 mm² được 30 080 mm²."},
+{s:2,t:"two",b:"Câu 2c",q:"9 234 cm² = … dm² … cm²",l:["dm²","cm²"],a:["92","34"],e:"1 dm² = 100 cm² nên 9 234 cm² = 92 dm² 34 cm²."},
+{s:2,t:"num",b:"Câu 2d",q:"5 phút 45 giây = … giây",u:"giây",a:"345",e:"5 phút = 300 giây; 300 + 45 = 345 giây."},
+{s:2,t:"num",b:"Câu 3a",q:"Tính bằng cách thuận tiện: 65 318 – 7 295 + 47 295 – 5 318",a:"100000",e:"= (65 318 – 5 318) + (47 295 – 7 295) = 60 000 + 40 000 = 100 000."},
+{s:2,t:"num",b:"Câu 3b",q:"Tính bằng cách thuận tiện: 1 463 + 267 + 1 537 + 873 + 1 733",a:"5873",e:"= (1 463 + 1 537) + (267 + 1 733) + 873 = 3 000 + 2 000 + 873 = 5 873."},
+{s:2,t:"num",b:"Câu 4",q:"Bác An có 2 sào đất, mỗi sào có diện tích 360 m². Trên mảnh đất đó, bác đào ao thả cá và trồng rau. Diện tích trồng rau nhỏ hơn diện tích ao là 150 m². Cứ 1 m² bác An thu hoạch được 3 kg rau. Hỏi bác An thu hoạch được bao nhiêu ki-lô-gam rau?",u:"kg",a:"855",e:"Diện tích đất: 360 × 2 = 720 m². Diện tích trồng rau: (720 – 150) : 2 = 285 m². Số rau: 3 × 285 = 855 kg."}
+];
+const L="ABCD";let state=Q.map(q=>q.t==="two"?["",""]:null),done=false,tLeft=2400,tm;
+const $=s=>document.querySelector(s);
+const norm=v=>String(v||"").replace(/[\s.,]/g,"");
+const fmt=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+function pts(){return `<circle cx="30" cy="0" r="0"/>`}
+function render(){
+  let h="",sec=0;
+  Q.forEach((q,i)=>{
+    if(q.s!==sec){sec=q.s;h+=`<h2>${sec===1?"I. Trắc nghiệm":"II. Tự luận"}</h2><p class="hint">${sec===1?"Chọn chữ đặt trước câu trả lời đúng.":"Tự tính ra giấy nháp rồi nhập kết quả. Số có thể viết liền hoặc có dấu cách."}</p>`}
+    h+=`<div class="q" id="q${i}"><h3>${q.t==="mc"?"Câu "+(i+1):q.b}. <small>${q.q}</small></h3>`;
+    if(q.t==="mc")h+=`<div class="opts">`+q.o.map((o,k)=>`<button class="opt" data-i="${i}" data-k="${k}"><b>${L[k]}</b>${o}</button>`).join("")+`</div>`;
+    if(q.t==="num")h+=`<div class="row"><input type="text" inputmode="numeric" data-i="${i}" placeholder="Kết quả"> ${q.u?`<label>${q.u}</label>`:""}</div>`;
+    if(q.t==="two")h+=`<div class="row"><input type="text" inputmode="numeric" data-i="${i}" data-p="0" style="max-width:100px"><label>${q.l[0]}</label><input type="text" inputmode="numeric" data-i="${i}" data-p="1" style="max-width:100px"><label>${q.l[1]}</label></div>`;
+    h+=`<div class="fb" id="fb${i}"></div></div>`;
+  });
+  const A=`<line class="ln" x1="20" y1="120" x2="200" y2="120"/>`;
+  h+=`<h2>Câu 5. Vẽ hình (không tính điểm)</h2><div class="q"><p style="margin:0 0 8px">a) Vẽ đường thẳng DC đi qua điểm X và vuông góc với đường thẳng AB.<br>b) Vẽ đường thẳng PQ đi qua điểm X và song song với đường thẳng MN.</p>
+  <p class="hint">Hãy dùng thước và ê ke vẽ vào vở/giấy nháp, rồi nộp bài để đối chiếu với hình mẫu.</p>
+  <div class="draw"><svg viewBox="0 0 220 140"><circle cx="110" cy="20" r="3" fill="currentColor"/><text x="118" y="24">X</text>${A}<text x="20" y="136">A</text><text x="190" y="136">B</text></svg>
+  <svg viewBox="0 0 220 140"><circle cx="110" cy="20" r="3" fill="currentColor"/><text x="118" y="24">X</text>${A}<text x="20" y="136">M</text><text x="190" y="136">N</text></svg></div>
+  <div class="fb" id="fb5" style="display:none;background:var(--pri2)"><b>Hướng dẫn:</b><br>a) Đặt một cạnh góc vuông của ê ke trùng với AB, trượt ê ke sao cho cạnh góc vuông còn lại đi qua X, rồi vạch đường thẳng DC.<br>b) Vẽ đường thẳng CD qua X vuông góc với MN; sau đó vẽ đường thẳng PQ qua X vuông góc với CD. Khi đó PQ // MN.
+  <div class="draw" style="margin-top:8px"><svg viewBox="0 0 220 140"><line class="sol" x1="110" y1="4" x2="110" y2="136"/><circle cx="110" cy="20" r="3" fill="currentColor"/><text x="118" y="24">X</text><text x="98" y="14">D</text><text x="98" y="134">C</text>${A}<text x="20" y="136">A</text><text x="190" y="136">B</text></svg>
+  <svg viewBox="0 0 220 140"><line class="sol" x1="110" y1="4" x2="110" y2="136"/><line class="sol" x1="30" y1="20" x2="190" y2="20"/><circle cx="110" cy="20" r="3" fill="currentColor"/><text x="118" y="34">X</text><text x="32" y="38">P</text><text x="176" y="38">Q</text>${A}<text x="20" y="136">M</text><text x="190" y="136">N</text></svg></div></div></div>`;
+  $("#quiz").innerHTML=h;
+}
+function answered(i){const q=Q[i],s=state[i];return q.t==="mc"?s!==null:q.t==="num"?norm(s)!=="":norm(s[0])!==""&&norm(s[1])!==""}
+function upd(){const n=Q.filter((_,i)=>answered(i)).length;$("#prog").textContent=n+"/"+Q.length;$("#fill").style.width=n/Q.length*100+"%"}
+document.addEventListener("click",e=>{
+  if(done)return;const o=e.target.closest(".opt");
+  if(o){const i=+o.dataset.i;state[i]=+o.dataset.k;document.querySelectorAll(`[data-i="${i}"].opt`).forEach(b=>b.classList.toggle("sel",b===o));upd()}
+});
+document.addEventListener("input",e=>{
+  const t=e.target;if(t.dataset.i===undefined||t.type!=="text")return;
+  const i=+t.dataset.i;if(t.dataset.p!==undefined)state[i][+t.dataset.p]=t.value;else state[i]=t.value;upd();
+});
+function isOk(i){const q=Q[i],s=state[i];
+  if(q.t==="mc")return s===q.a;
+  if(q.t==="num")return norm(s)===q.a;
+  return norm(s[0])===q.a[0]&&norm(s[1])===q.a[1]}
+function finish(auto){
+  if(done)return;
+  const n=Q.filter((_,i)=>answered(i)).length;
+  if(!auto&&n<Q.length&&!confirm(`Bạn mới làm ${n}/${Q.length} câu. Vẫn nộp bài?`))return;
+  done=true;clearInterval(tm);let ok=0,s1=0,s2=0;
+  Q.forEach((q,i)=>{
+    const r=isOk(i);if(r){ok++;q.s===1?s1++:s2++}
+    $("#q"+i).classList.add(r?"ok":"bad");
+    const ans=q.t==="mc"?(q.svg?"hình "+L[q.a]:`${L[q.a]}. ${q.o[q.a]}`):q.t==="two"?`${q.a[0]} ${q.l[0]} ${q.a[1]} ${q.l[1]}`:q.a.replace(/\B(?=(\d{3})+(?!\d))/g," ")+(q.u?" "+q.u:"");
+    $("#fb"+i).innerHTML=`<b>${r?"✔ Chính xác!":"✘ Chưa đúng."}</b> Đáp án: <b>${ans}</b><br>${q.e}`;
+    if(q.t==="mc")document.querySelectorAll(`[data-i="${i}"].opt`).forEach(b=>{const k=+b.dataset.k;if(k===q.a)b.classList.add("right");else if(k===state[i])b.classList.add("wrong")});
+  });
+  $("#fb5").style.display="block";
+  document.querySelectorAll("input").forEach(x=>x.disabled=true);
+  const sc=Math.round(ok/Q.length*100)/10;
+  $("#score").textContent=String(sc).replace(".",",");$("#ring").style.setProperty("--p",sc*10);
+  $("#grade").textContent=sc>=9?"Xuất sắc! 🏆":sc>=8?"Giỏi! 🎉":sc>=6.5?"Khá tốt 👍":sc>=5?"Đạt – cố gắng thêm nhé":"Cần ôn tập thêm 💪";
+  $("#sum").textContent=`Bạn làm đúng ${ok}/${Q.length} câu/ý${auto?" (hết giờ, bài được nộp tự động)":""}.`;
+  $("#secs").innerHTML=`<div class="stat"><b>${s1}/6</b><span>Trắc nghiệm</span></div><div class="stat"><b>${s2}/11</b><span>Tự luận</span></div><div class="stat"><b>${fmt(2400-tLeft)}</b><span>Thời gian làm</span></div>`;
+  $("#submitBox").style.display="none";$("#result").style.display="block";$("#result").scrollIntoView({behavior:"smooth"});
+}
+$("#start").onclick=()=>{
+  $("#hero").style.display="none";$("#bar").style.display="block";$("#quiz").style.display="block";$("#submitBox").style.display="block";
+  render();upd();
+  tm=setInterval(()=>{tLeft--;$("#timer").textContent=fmt(tLeft);if(tLeft<=0)finish(true)},1000);window.scrollTo(0,0);
+};
+$("#submit").onclick=()=>finish(false);
+$("#review").onclick=()=>$("#q0").scrollIntoView({behavior:"smooth"});
+</script>
+</body>
+</html>
